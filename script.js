@@ -11,17 +11,17 @@ class Calculator {
         this.op = undefined;
     }
 
-    delete = () => {
+    delete() {
         this.currOp = this.currOp.toString().slice(0, -1);
 
     }
 
-    appendNum = (num) => {
+    appendNum(num) {
         if(num === '.' && this.currOp.includes('.')) return;
         this.currOp = this.currOp.toString() + num.toString();
     }
 
-    chooseOp = (op) => {
+    chooseOp(op) {
         if (this.currOp === "") return;
         if (this.prevOp !== "") {
             this.compute();
@@ -31,7 +31,7 @@ class Calculator {
         this.currOp = '';
     }
 
-    compute = () => {
+    compute() {
         let computation
         const prev = parseFloat(this.prevOp);
         const curr = parseFloat(this.currOp);
@@ -57,7 +57,7 @@ class Calculator {
         this.prevOp = '';
     }
 
-    getDisplayNum = (num) => {
+    getDisplayNum(num) {
         const strNum = num.toString();
         const intDigits = parseFloat(strNum.split('.')[0]);
         const decDigits = strNum.split('.')[1];
@@ -74,7 +74,7 @@ class Calculator {
         }
     }
 
-    updateDisplay = () => {
+    updateDisplay() {
         this.currOpElem.innerText = this.getDisplayNum(this.currOp);
         if (this.op != null) {
             this.prevOpElem.innerText = `${this.getDisplayNum(this.prevOp)} ${this.op}`;
