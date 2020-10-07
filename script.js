@@ -57,9 +57,30 @@ class Calculator {
         this.prevOp = '';
     }
 
+    getDisplayNum = (num) => {
+        const strNum = num.toString();
+        const intDigits = parseFloat(strNum.split('.')[0]);
+        const decDigits = strNum.split('.')[1];
+        let intDisplay;
+        if (isNaN(intDigits)) {
+            intDisplay = '';
+        } else {
+            intDisplay = intDigits.toLocaleString('en', {maximumFractionDigits: 0})
+        }
+        if (decDigits != null) {
+            return `${intDisplay}.${decDigits}`
+        } else {
+            return intDisplay;
+        }
+    }
+
     updateDisplay = () => {
-        this.currOpElem.innerText = this.currOp;
-        this.prevOpElem.innerText = this.prevOp;
+        this.currOpElem.innerText = this.getDisplayNum(this.currOp);
+        if (this.op != null) {
+            this.prevOpElem.innerText = `${this.getDisplayNum(this.prevOp)} ${this.op}`;
+        } else {
+            this.prevOpElem.innerText = '';
+        }
     }
 }
 
