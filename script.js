@@ -5,7 +5,7 @@ class Calculator {
         this.clear();
     }
 
-    clear = () => {
+    clear() {
         this.currOp = '';
         this.prevOp = '';
         this.op = undefined;
